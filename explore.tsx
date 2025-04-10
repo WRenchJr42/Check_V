@@ -17,14 +17,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Svg, { G, Path } from 'react-native-svg';
 import { Ionicons } from '@expo/vector-icons';
 
-// ---------------------------------------------------------------------------
-// Theme Definitions (Dark & Light) with Purple Primary Button
-// ---------------------------------------------------------------------------
 const themes = {
   light: {
     background: '#f5f5f5',
     text: '#333',
-    primary: '#6C5CE7', // purple button
+    primary: '#6C5CE7', 
     card: '#ffffff',
     danger: '#F44336',
     success: '#4CAF50',
@@ -32,16 +29,13 @@ const themes = {
   dark: {
     background: '#2D3436',
     text: '#FFFFFF',
-    primary: '#6C5CE7', // purple button remains the same
+    primary: '#6C5CE7', 
     card: '#404040',
     danger: '#F44336',
     success: '#4CAF50',
   }
 };
 
-// ---------------------------------------------------------------------------
-// Config & Interfaces
-// ---------------------------------------------------------------------------
 const VIRUSTOTAL_API_KEY =
   'eb9cd3d7cf4ecf107ca521f4081a2f5429955148b989c0fa09121a0635581cbc'; // Replace with your API key
 
@@ -65,11 +59,6 @@ interface ScanResult {
   }>;
 }
 
-// ---------------------------------------------------------------------------
-// Animated Pie Chart Code
-// ---------------------------------------------------------------------------
-
-// Helper: convert polar to Cartesian coordinates
 const polarToCartesian = (
   centerX: number,
   centerY: number,
@@ -83,7 +72,6 @@ const polarToCartesian = (
   };
 };
 
-// Helper: describe an SVG arc from startAngle to endAngle
 const describeArc = (
   x: number,
   y: number,
@@ -159,9 +147,6 @@ const AnimatedPieChart: React.FC<AnimatedPieChartProps> = ({
   );
 };
 
-// ---------------------------------------------------------------------------
-// Animated Vendor Card Component
-// ---------------------------------------------------------------------------
 const AnimatedVendorCard: React.FC<{
   vendor: ScanResult['vendors'][0];
   delay: number;
@@ -206,9 +191,6 @@ const AnimatedVendorCard: React.FC<{
   );
 };
 
-// ---------------------------------------------------------------------------
-// Main File Scanner Screen with Dark/Light Theme & Purple Buttons
-// ---------------------------------------------------------------------------
 export default function FileScannerScreen() {
   const colorScheme = useColorScheme() || 'light';
   const theme = themes[colorScheme];
@@ -218,7 +200,6 @@ export default function FileScannerScreen() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // Open file picker
   const pickDocument = async () => {
     try {
       const result = await DocumentPicker.getDocumentAsync({
@@ -240,7 +221,6 @@ export default function FileScannerScreen() {
     }
   };
 
-  // Generate SHA256 hash of the file
   const generateHash = async (fileUri: string) => {
     try {
       setLoading(true);
@@ -261,7 +241,6 @@ export default function FileScannerScreen() {
     }
   };
 
-  // Query VirusTotal using the hash (with caching)
   const checkVirusTotal = async (hash: string) => {
     try {
       const cachedResult = await AsyncStorage.getItem(hash);
@@ -300,7 +279,6 @@ export default function FileScannerScreen() {
     }
   };
 
-  // Overall severity (based on stats)
   const getSeverityLevel = () => {
     if (!results) return 'Unknown';
     const totalBad = results.stats.malicious + results.stats.suspicious;
@@ -311,7 +289,6 @@ export default function FileScannerScreen() {
     return 'Critical Risk';
   };
 
-  // Prepare animated pie chart data if results are available
   const pieData = results
     ? [
         { value: results.stats.malicious, color: theme.danger },
@@ -411,9 +388,6 @@ export default function FileScannerScreen() {
   );
 }
 
-// ---------------------------------------------------------------------------
-// Helper: Determine severity color based on level
-// ---------------------------------------------------------------------------
 const severityColor = (level: string) => {
   switch (level) {
     case 'Clean':
@@ -431,9 +405,6 @@ const severityColor = (level: string) => {
   }
 };
 
-// ---------------------------------------------------------------------------
-// Styles
-// ---------------------------------------------------------------------------
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
