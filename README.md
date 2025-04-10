@@ -24,3 +24,4 @@ graph TD
   F --> G[Display Result + Pie Chart]
   A -->|Enter SHA256| H[Query VirusTotal Report API (SHA)]
   H --> F
+```
