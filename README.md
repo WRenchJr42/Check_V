@@ -4,11 +4,11 @@ A React Native app that allows users to either **upload a file** or **query a SH
 
 ## 🚀 Features
 
-- 📁 Upload any file to VirusTotal and get a real-time scan report
-- 🔎 Query files directly using their SHA256 hash
-- 📊 Visualize detection statistics: Malicious, Suspicious, Undetected, and Timeout
-- 💡 Clean UI built with React Native Paper and chart rendering with react-native-chart-kit
-- ⚙️ Fully animated and mobile-friendly
+- 📁 Upload any file to VirusTotal and get a real-time scan report  
+- 🔎 Query files directly using their SHA256 hash  
+- 📊 Visualize detection statistics: Malicious, Suspicious, Undetected, and Timeout  
+- 💡 Clean UI built with React Native Paper and chart rendering with react-native-chart-kit  
+- ⚙️ Fully animated and mobile-friendly  
 
 ---
 
@@ -19,9 +19,9 @@ graph TD
   A[User] -->|Upload File| B[Document Picker]
   B --> C[Send to VirusTotal Upload API]
   C --> D[Receive File ID]
-  D --> E[Query VirusTotal Report API]
-  E --> F[Parse last_analysis_stats]
-  F --> G[Display Result + Pie Chart]
-  A -->|Enter SHA256| H[Query VirusTotal Report API (SHA)]
+  D --> E[Query Report API]
+  E --> F[Parse Analysis Stats]
+  F --> G[Display Pie Chart]
+  A -->|Enter SHA256| H[Query Report API with SHA]
   H --> F
 ```
