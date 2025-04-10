@@ -1,18 +1,18 @@
-# 📱 VirusTotal Mobile Dashboard
+#  VirusTotal Mobile Dashboard
 
 A React Native app that allows users to either **upload a file** or **query a SHA256 hash** to VirusTotal's API and visualize the detection results in a beautiful **pie chart**.
 
-## 🚀 Features
+##  Features
 
-- 📁 Upload any file to VirusTotal and get a real-time scan report  
-- 🔎 Query files directly using their SHA256 hash  
-- 📊 Visualize detection statistics: Malicious, Suspicious, Undetected, and Timeout  
-- 💡 Clean UI built with React Native Paper and chart rendering with react-native-chart-kit  
-- ⚙️ Fully animated and mobile-friendly  
+-  Upload any file to VirusTotal and get a real-time scan report  
+-  Query files directly using their SHA256 hash  
+-  Visualize detection statistics: Malicious, Suspicious, Undetected, and Timeout  
+-  Clean UI built with React Native Paper and chart rendering with react-native-chart-kit  
+-  Fully animated and mobile-friendly  
 
 ---
 
-## 🧠 Architecture & Workflow
+## Architecture & Workflow
 
 ```mermaid
 graph TD
