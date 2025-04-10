@@ -16,9 +16,6 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Svg, { G, Path } from 'react-native-svg';
 
-// ---------------------------------------------------------------------------
-// VirusTotal API Key and Interfaces
-// ---------------------------------------------------------------------------
 const VIRUSTOTAL_API_KEY = 'eb9cd3d7cf4ecf107ca521f4081a2f5429955148b989c0fa09121a0635581cbc';
 
 interface ScanResult {
@@ -63,11 +60,6 @@ const themes: { light: ThemeColors; dark: ThemeColors } = {
   }
 };
 
-// ---------------------------------------------------------------------------
-// Animated Pie Chart Code
-// ---------------------------------------------------------------------------
-
-// Helper functions to calculate SVG arc paths
 const polarToCartesian = (
   centerX: number,
   centerY: number,
@@ -176,10 +168,6 @@ const AnimatedPieChart: React.FC<AnimatedPieChartProps> = ({
     </Svg>
   );
 };
-
-// ---------------------------------------------------------------------------
-// Core App Components: VendorCard, StatBox, and AnimatedVendorCard
-// ---------------------------------------------------------------------------
 const StatBox: React.FC<{ 
   value: number; 
   label: string; 
@@ -242,9 +230,6 @@ const severityColor = (level: string, theme: ThemeColors): string => {
   }
 };
 
-// ---------------------------------------------------------------------------
-// HomeScreen: Integrated VirusTotal Hash Check and Animated Pie Chart
-// ---------------------------------------------------------------------------
 const HomeScreen: React.FC = () => {
   const colorScheme = useColorScheme() || 'light';
   const theme = themes[colorScheme];
@@ -275,7 +260,6 @@ const HomeScreen: React.FC = () => {
       setShaError('');
       animateProgress(0.3);
 
-      // Check for cached result first
       const cachedResult = await AsyncStorage.getItem(shaInput);
       if (cachedResult) {
         setShaResults(JSON.parse(cachedResult));
@@ -321,7 +305,6 @@ const HomeScreen: React.FC = () => {
     return 'Critical Risk';
   };
 
-  // Prepare pie chart data from scan stats when available
   const pieData = shaResults
     ? [
         { value: shaResults.stats.malicious, color: theme.danger },
@@ -463,9 +446,6 @@ const HomeScreen: React.FC = () => {
   );
 };
 
-// ---------------------------------------------------------------------------
-// ProgressBar Component
-// ---------------------------------------------------------------------------
 const ProgressBar: React.FC<{ progress: Animated.Value; theme: ThemeColors }> = ({ progress, theme }) => (
   <View style={[styles.progressContainer, { backgroundColor: theme.card }]}>
     <Animated.View 
@@ -483,9 +463,6 @@ const ProgressBar: React.FC<{ progress: Animated.Value; theme: ThemeColors }> = 
   </View>
 );
 
-// ---------------------------------------------------------------------------
-// Styles
-// ---------------------------------------------------------------------------
 const styles = StyleSheet.create({
   container: {
     flex: 1,
